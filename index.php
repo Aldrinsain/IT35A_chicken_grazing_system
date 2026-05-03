@@ -48,7 +48,7 @@
         <!-- Farmer Sections -->
         <?php include 'pages/farmer/dashboard.php'; ?>
         <?php include 'pages/farmer/my_chickens.php'; ?>
-        <?php include 'pages/farmer/map.php'; ?>
+       
         <?php include 'pages/farmer/notifications.php'; ?>
         <?php include 'pages/farmer/zones.php'; ?>
         <?php include 'pages/farmer/reports.php'; ?>
