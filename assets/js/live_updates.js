@@ -2,34 +2,14 @@
 
 function startLiveUpdates() {
   setInterval(() => {
-    const zones = ['Soft soil','Piles of leaves (dry or wet)','Kitchen waste or scraps area','Dust or sandy ground','Animal manure piles (goat or cow)'];
-
+    // Randomly move some chickens
     chickens.forEach(c => {
       if (Math.random() < .15) {
-        // Move position slightly
-        c.lat += (Math.random() - .5) * 0.001;
-        c.lng += (Math.random() - .5) * 0.001;
-
-        // Zone change — only 2% chance to go Outside (was 10%)
-        if (Math.random() < .02) {
-          // Only allow 1 chicken Outside at a time
-          const alreadyOutside = chickens.filter(x => x.status === 'Outside').length;
-          if (alreadyOutside < 1) {
-            c.zone = 'Outside';
-          } else {
-            // If already 1 outside, just move to a normal zone
-            c.zone = zones[Math.floor(Math.random() * zones.length)];
-          }
-        } else if (c.zone === 'Outside' && Math.random() < .3) {
-          // Outside chickens have 30% chance to come back inside each tick
-          c.zone = zones[Math.floor(Math.random() * zones.length)];
-        } else if (Math.random() < .05) {
-          // 5% chance to move to a different inside zone
-          c.zone = zones[Math.floor(Math.random() * zones.length)];
-        }
-
-        // Update status based on zone
-        c.status = c.zone === 'Outside' ? 'Outside' : Math.random() < .15 ? 'Moving' : 'Inside';
+        c.lat += (Math.random() - .5) * .001;
+        c.lng += (Math.random() - .5) * .001;
+        const zones = ['Soft soil','Piles of leaves (dry or wet)','Kitchen waste or scraps area','Dust or sandy ground','Animal manure piles (goat or cow)','Outside'];
+        if (Math.random() < .1) c.zone = zones[Math.floor(Math.random() * zones.length)];
+        c.status = c.zone === 'Outside' ? 'Outside' : Math.random() < .2 ? 'Moving' : 'Inside';
         c.moves++;
       }
     });
@@ -61,10 +41,10 @@ function startLiveUpdates() {
     if (statM) statM.textContent = totalMoves;
 
     // Refresh dashboard movements table if visible
-    if (document.getElementById('section-dashboard') &&
-        document.getElementById('section-dashboard').classList.contains('active')) {
+    if (document.getElementById('section-dashboard').classList.contains('active')) {
       renderMovementsBody();
     }
 
+    
   }, 4000);
 }

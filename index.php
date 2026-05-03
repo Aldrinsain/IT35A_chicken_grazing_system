@@ -44,11 +44,12 @@
         <?php include 'pages/admin/users.php'; ?>
         <?php include 'pages/admin/reports.php'; ?>
         <?php include 'pages/admin/settings.php'; ?>
-        
+        <?php include 'pages/admin/map_section.php'; ?>
+
         <!-- Farmer Sections -->
         <?php include 'pages/farmer/dashboard.php'; ?>
         <?php include 'pages/farmer/my_chickens.php'; ?>
-       
+        <?php include 'pages/farmer/map.php'; ?>
         <?php include 'pages/farmer/notifications.php'; ?>
         <?php include 'pages/farmer/zones.php'; ?>
         <?php include 'pages/farmer/reports.php'; ?>
